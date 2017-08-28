@@ -26,7 +26,7 @@ public abstract class AbstractThread {
      */
     public void start() {
         thread.start();
-        active = true;
+        setActive(true);
     }
 
     /**
@@ -34,7 +34,7 @@ public abstract class AbstractThread {
      */
     public void stop() {
         thread.interrupt();
-        active = false;
+                setActive(false);
     }
 
     /**
@@ -45,18 +45,10 @@ public abstract class AbstractThread {
     public void sleep(long milliseconds) {
         try {
             Thread.sleep(milliseconds);
+            setActive(true);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Gets whether the thread is active or not
-     *
-     * @return
-     */
-    public boolean isActive() {
-        return active;
     }
 
     /**
